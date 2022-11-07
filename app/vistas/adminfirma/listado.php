@@ -63,14 +63,14 @@ if(isset($_SESSION['correo'])) {
     <div class="table-responsive">
         <table class="table table-striped table-hover" id="tabla">
           <thead>
-              <tr id="tdtitulo text-bg-dark">
+              <tr id="tdtitulo text-bg-dark text-center">
                 <th>Numero</th>
                 <th>Archivo</th>
                 <th>Tipo</th>
                 <th>Tamaño</th>
                 <th>Fecha</th>
                 <th>Acción</th>
-                <th></th>
+                <th>Visualizar</th>
               </tr>
           </thead>
           <tbody>
@@ -136,7 +136,7 @@ if(isset($_SESSION['correo'])) {
       								echo"
                       <td><center>
                       <a target='_Blank' href='".RUTA_URL."/img/firmas/".$usuario->nombrearchivo."'>
-                        <img src='".RUTA_URL."/img/recursos/".$usuario->nombrearchivo."' width='80' height='50'>
+                        <img src='".RUTA_URL."/img/firmas/".$usuario->nombrearchivo."' width='80' height='50'>
                       </a></center>
                       </td>";
       							break;
@@ -147,7 +147,7 @@ if(isset($_SESSION['correo'])) {
                 <td><?php echo $usuario->tipo; ?></td>
                 <td><?php echo formatSizeUnits($usuario->tamanio); ?></td>
                 <td><?php echo $usuario->fecha; ?></td>
-                <td><a class="btn btn-default" href="<?php echo RUTA_URL;?>/recursos/editarnew/<?php echo $usuario->id; ?>">Editar</a> <a class="btn btn-danger" href="<?php echo RUTA_URL;?>/recursos/eliminarnew/<?php echo $usuario->id; ?>">Borrar</a></td>
+                <td><a class="btn btn-default" href="<?php echo RUTA_URL;?>/archivosfirma/editarimgnew/<?php echo $usuario->id; ?>">Editar</a> <a class="btn btn-danger" href="<?php echo RUTA_URL;?>/archivosfirma/eliminarnew/<?php echo $usuario->id; ?>">Borrar</a></td>
                 <td><a class="btn btn-primary" href="<?php echo RUTA_URL;?>/archivosfirma/firmarArchivo/<?php echo $usuario->id; ?>">Firmar</a></td>
               </tr>
 <?php

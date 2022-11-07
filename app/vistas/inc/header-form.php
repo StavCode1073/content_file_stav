@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="id=edge">
 
     <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL;?>/css/fontawesome-all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="<?php echo RUTA_URL;?>/img/icono.png" />
     <title><?php echo NOMBRESITIO;?></title>
     <style>
@@ -44,7 +44,25 @@
       justify-content: center;    
       flex-direction: row;
     }
-    </style>
+  			.colordiv{
+  				top: 150px;
+  			}
+  			.alto-baner{
+  				margin-bottom: 60px;
+  			}
+  			.w-imagen{
+  				width: 90px;
+  			}
+  			.w-imagen-logo{
+  				width: 160px;
+  			}
+  			.fondo-baner-contacto{
+  				background-color: #1380bb;
+  			}
+  			.text-iconos{
+  				font-size: 24px;
+  			}
+  	</style>
   </head>
   <body>
     

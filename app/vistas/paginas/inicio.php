@@ -47,13 +47,13 @@ if(isset($_SESSION['correo'])) {
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="<?php echo RUTA_URL;?>/Archivosfirma/agregarnew">
+                <a href="<?php echo RUTA_URL;?>/Archivosfirma/listado">
                 <div class="well dash-box d-flex flex-column align-items-center ">
                   <div class="w-25">
                      <img src="<?php echo RUTA_URL;?>/img/icono-write-pdf.png" class="img-fluid" alt="...">
                   </div>
                  
-                  <h3><span class="fas fa-edit" aria-hidden="true"></span> Firma electrónica</h3>
+                  <h3><span class="fas fa-edit" aria-hidden="true"></span> Archivos certificados</h3>
                   <!--<h4>Agregar,Editar y Eliminar</h4>-->
                 </div>
                 </a>

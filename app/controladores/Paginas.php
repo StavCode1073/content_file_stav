@@ -241,6 +241,127 @@ class Paginas extends Controlador{
       $this->vista('paginas/pymentpricing', $datos = []);
     }
 
+    public function formordencompra()
+    {
+      if(isset($_SESSION['correo'])) {
+          $mail = $_SESSION['correo'];
+          $datos =[
+            'email_user' => $mail
+          ];
+          $usuarioL = $this->usuarioModelo->consultarUser($datos);
+
+          //enviar y cargar en la vista inicio los datos
+          $datos =[
+            'access' =>$usuarioL->access_user,
+          ];
+          $this->vista('paginas/formordencompra', $datos);
+      }else{
+        $this->vista('paginas/formordencompra', $datos = []);
+      }
+      $this->vista('paginas/formordencompra', $datos = []);
+    }
+    public function formsolicitud()
+    {
+      if(isset($_SESSION['correo'])) {
+          $mail = $_SESSION['correo'];
+          $datos =[
+            'email_user' => $mail
+          ];
+          $usuarioL = $this->usuarioModelo->consultarUser($datos);
+
+          //enviar y cargar en la vista inicio los datos
+          $datos =[
+            'access' =>$usuarioL->access_user,
+          ];
+          $this->vista('paginas/formsolicitud', $datos);
+      }else{
+        $this->vista('paginas/formsolicitud', $datos = []);
+      }
+      $this->vista('paginas/formsolicitud', $datos = []);
+    }
+    public function formdatosfiscales()
+    {
+      if(isset($_SESSION['correo'])) {
+
+          $mail = $_SESSION['correo'];
+          $datos =[
+            'email_user' => $mail
+          ];
+          $usuarioL = $this->usuarioModelo->consultarUser($datos);
+          
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              $datos =[
+                'id' => $usuarioL->id,
+                'acceso' => trim($_POST['acceso']),
+              ];
+              if($this->usuarioModelo->accesoPago($datos)){
+                
+                  redireccionar('/paginas/incio');
+              }
+
+          }
+          //enviar y cargar en la vista inicio los datos
+          $datos =[
+            'access' =>$usuarioL->access_user,
+          ];
+          $this->vista('paginas/formdatosfiscales', $datos);
+      }else{
+        $this->vista('paginas/formdatosfiscales', $datos = []);
+      }
+      $this->vista('paginas/formdatosfiscales', $datos = []);
+    }
+
+    public function consultFilesList(){
+
+      $this->vista('paginas/consultfileslist', $datos = []);
+    }
+
+    public function selectDocumentType()
+    {
+      if(isset($_SESSION['correo'])) {
+          $mail = $_SESSION['correo'];
+          $datos =[
+            'email_user' => $mail
+          ];
+          $usuarioL = $this->usuarioModelo->consultarUser($datos);
+
+          //enviar y cargar en la vista inicio los datos
+          $datos =[
+            'access' =>$usuarioL->access_user,
+          ];
+          $this->vista('paginas/selectdocumentype', $datos);
+      }else{
+        $this->vista('paginas/selectdocumentype', $datos = []);
+      }
+      $this->vista('paginas/selectdocumentype', $datos = []);
+    }
+
+
+    public function selectOficial()
+    {
+      if(isset($_SESSION['correo'])) {
+          $mail = $_SESSION['correo'];
+          $datos =[
+            'email_user' => $mail
+          ];
+          $usuarioL = $this->usuarioModelo->consultarUser($datos);
+
+          //enviar y cargar en la vista inicio los datos
+          $datos =[
+            'access' =>$usuarioL->access_user,
+          ];
+          $this->vista('paginas/selectoficial', $datos);
+      }else{
+        $this->vista('paginas/selectoficial', $datos = []);
+      }
+      $this->vista('paginas/selectoficial', $datos = []);
+    }
+
+    public function firma(){
+
+      $this->vista('paginas/firma', $datos = []);
+    }
+
 }//clases
 
 

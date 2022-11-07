@@ -92,6 +92,9 @@ public function listado($id=""){
 
 // agregar nuevos productos
 public function agregarnew(){
+  $pubs = $this->usuarioModelo->publicTypeAll();
+  $docs = $this->usuarioModelo->typeDocAll();
+  $class = $this->usuarioModelo->clasificAll();
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //tipo de imagen
             $permitidos = array("image/jpeg", "image/png", "image/gif", "image/jpg", "application/pdf", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
@@ -113,6 +116,14 @@ public function agregarnew(){
             $ruta = "img" . DS . "recursos" . DS . $nombre2;
             //$ruta ="public/img/nuevos/" . $nombre;
             move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta);
+
+            $datos =[
+              'email_user' => trim($_POST['mail']),
+            ];
+            $usuarioL = $this->usuarioModelo->consultarUser($datos);
+  
+
+            $mytoken =  uniqid('cms');
             $datos = [
               //'marca' => trim($_POST['marca']),
               //'descripcion' => trim($_POST['descripcion']),
@@ -120,7 +131,14 @@ public function agregarnew(){
               'descripcion' => trim($_POST['descripcion']),
               'type' => $tipo,
               'tamanio' => $tamanio,
-              'fechaActual' => trim($_POST['fechaActual'])
+              'fechaActual' => trim($_POST['fechaActual']),
+              'mytoken' => $mytoken,
+              'id_user' => $usuarioL->id,
+              'pub' => trim($_POST['pub']),
+              'doc' => trim($_POST['doc']),
+              'sum' => trim($_POST['sum']),
+              'cla' => trim($_POST['cla']),
+              'sujeto' => trim($_POST['sujeto']),
             ];
         if ($this->usuarioModelo->agregarRecurso($datos)) {
             redireccionar('/recursos/listado');
@@ -132,6 +150,9 @@ public function agregarnew(){
         }
     }else{
       $datos = [
+          'pubs' => $pubs,
+          'docs' => $docs,
+          'class' => $class,
           'nombre' => '',
           'email' => '',
           'telefono' => ''

@@ -16,7 +16,7 @@ if(isset($_SESSION['correo'])) {
   <div class="container">
     <div class="row">
       <div class="col-md-10">
-        <h1><span class="fas fa-cog" aria-hidden="true"></span> Registro de<small> contenido <?php echo $fecha_actual1;?></small></h1>
+        <h1><span class="fas fa-cog" aria-hidden="true"></span> Archivos<small> certificadas <?php echo $fecha_actual1;?></small></h1>
       </div>
     </div>
   </div>
@@ -50,28 +50,18 @@ if(isset($_SESSION['correo'])) {
 	                <input type="hidden" name="nombrearchivo" class="form-control" placeholder="Ingrese texto para la firma" value="<?php echo $datos['archivo'];?>"/>
 	              </div>
 
-	              <input type="submit" class="btn btn-danger" value="Firmar documento">
+	              <!-- <input type="submit" class="btn btn-danger" value="Firmar documento"> -->
+				  <a target='_Blank' class="btn btn-info" href="<?php echo RUTA_URL ?>/img/firmas/<?php echo $datos['archivo'];?>">Firmar documento </a>
 	            </form>
       		</div>
 
       		<div class="col-4">
-
-      			<form role="form"  name="fe" action="<?php echo RUTA_URL;?>/archivosfirma/agregarnew" method="post" enctype="multipart/form-data">
+				<h6 class="text-center">Agrega una firma en la caja de texto o un imagen </h6>
+      			<form role="form"  name="fe" action="<?php echo RUTA_URL;?>/archivosfirma/firmarArchivo/<?php echo $datos['id_documento']; ?>" method="post" enctype="multipart/form-data">
 	              <div class="form-group mb-3">
 	                <label>Firma </label>
 	                <input type="text" name="firmatexto" class="form-control" placeholder="Ingrese texto para la firma" value=""/>
 	              </div>
-	              <input  id="fechaActual" name="fechaActual" type="hidden" value="<?php echo $fecha_actual2;?>" size="26" required />
-	              <input type="submit" class="btn btn-danger" value="Agregar">
-	            </form>
-
-	            <br></br>
-
-      			<form role="form"  name="fe" action="<?php echo RUTA_URL;?>/archivosfirma/agregarnew" method="post" enctype="multipart/form-data">
-	              <!--<div class="form-group">
-	                <label>Marca </label>
-	                <input type="text" name="marca" class="form-control" placeholder="Marca" value="" required>
-	              </div>-->
 	              <div class="form-group">
 	                <div class="alert alert-success" role="alert">
 	                  <h4 class="alert-heading">¡Aviso!</h4>
@@ -79,14 +69,35 @@ if(isset($_SESSION['correo'])) {
 	                    </p>
 	                </div>
 	                <p id="obligatorio"><label for="archivo">Firma digital en png o jpg </label></p>
-	                <input type="file" name="imagen" id="imagen" class="btn btn-danger btn-lg" required>
+	                <input type="file" name="imagen" id="imagen" class="btn btn-danger btn-lg">
 	                <p class="help-block">Maximo 3MB</p>
 	              </div>
 	              <input  id="fechaActual" name="fechaActual" type="hidden" value="<?php echo $fecha_actual2;?>" size="26" required />
-	              <input type="submit" class="btn btn-danger" value="Subir firma">
+	              <input type="submit" name="firma" class="btn btn-danger" value="Subir firma">
 	            </form>
 
+				<div class="mt-5">
+					<?php
+					foreach ($datos['firmas'] as $firma) : ?>
+
+						<div class="container">
+							<div class="row text-center" style="font-family: Vladimir Script; font-size: 34px;">
+								<?php
+									if($firma->tipo=="image/png" || $firma->tipo=="image/jpg" || $firma->tipo=="image/jpeg"){
+										echo "<div class='col my-2 py-3 border border-dark'><img src='".RUTA_URL."/img/nuevasfirmas/".$firma->nombrearchivo."' width='80' height='50'></div>";
+									}elseif ($firma->tipo=="letras") {
+										echo "<div class='col my-2 py-3 border border-dark'>".$firma->textofirma."</div>";
+									}
+								?>
+							</div>
+						</div>
+					<?php
+					endforeach;
+					?>
+				</div>
+
       		</div>
+
       	</div>
       </div>
     </div>

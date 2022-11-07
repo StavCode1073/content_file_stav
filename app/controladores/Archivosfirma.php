@@ -131,7 +131,7 @@ public function editarnew($id){
 public function editarimgnew($id){
    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $nameimg =  utf8_decode($_POST['imgname']);
-          $ruta_foto_db = "img" . DS . "recursos" . DS . $nameimg;
+          $ruta_foto_db = "img" . DS . "firmas" . DS . $nameimg;
 
             if(file_exists($ruta_foto_db)){
             unlink($ruta_foto_db);
@@ -153,7 +153,7 @@ public function editarimgnew($id){
            }else {
              $tipo = $_FILES['imagen']['type'];
            }
-           $ruta = "img" . DS . "recursos" . DS . $nombre2;
+           $ruta = "img" . DS . "firmas" . DS . $nombre2;
            //$ruta ="public/img/nuevos/" . $nombre;
            move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta);
            $datos = [
@@ -162,8 +162,8 @@ public function editarimgnew($id){
              'type' => $tipo
            ];
 
-       if ($this->usuarioModelo->actualizarRecursoimg($datos)) {
-           redireccionar('/recursos/listado');
+       if ($this->usuarioModelo->actualizarFirmaimg($datos)) {
+           redireccionar('/archivosfirma/listado');
          }else{
            die('Algo salio mal');
          }
@@ -180,7 +180,7 @@ public function editarimgnew($id){
          'fechaRegistro' => $usuario->fecha
      ];
      // si algo salio mal datos seran basios y redireciona a paginas
-     $this->vista('adminrecursos/editarimgnew', $datos);
+     $this->vista('adminfirma/editarimgnew', $datos);
           }
 
   }
@@ -188,14 +188,14 @@ public function editarimgnew($id){
 public function eliminarnew($id){
 
   // obtener informacion de usuario desde el modelo
-  $usuario = $this->usuarioModelo->obtenerRecursoId($id);
+  $usuario = $this->usuarioModelo->obtenerArchivosId($id);
 
   $datos = [
-         'id_documento' => $usuario->id,
-          'archivo' => $usuario->nombrearchivo,
-         'descripcion' => $usuario->description,
-         'tipo' => $usuario->tipo,
-         'fechaRegistro' => $usuario->fecha
+      'id_documento' => $usuario->id,
+      'archivo' => $usuario->nombrearchivo,
+      'descripcion' => $usuario->description,
+      'tipo' => $usuario->tipo,
+      'fechaRegistro' => $usuario->fecha
   ];
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -211,30 +211,101 @@ public function eliminarnew($id){
             'id' => $id
           ];
 
-      if ($this->usuarioModelo->borrarRecurso($datos)) {
-          redireccionar('/recursos/listado');
+      if ($this->usuarioModelo->borrarArchivo($datos)) {
+          redireccionar('/archivosfirma/listado');
         }else{
           die('Algo salio mal');
         }
 
   }
-   $this->vista('adminrecursos/eliminarnew', $datos);
+   $this->vista('adminfirma/eliminarnew', $datos);
 
 }
 
   public function firmarArchivo($id){
 
-    $usuario = $this->usuarioModelo->obtenerArchivosId($id);
 
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        
+        if(isset($_POST['firma'])){
+
+          $firmatexto = $_POST['firmatexto'];
+
+          if(isset($firmatexto) && $firmatexto != ''){
+            $firmatexto = $_POST['firmatexto'];
+
+            $datos =[
+              'firmatexto' => $firmatexto,
+              'nombre_arch' => '',
+              'type' => 'letras',
+              'tamanio' => '',
+              'fechaActual' => trim($_POST['fechaActual']),
+              'id_doc' => $id,
+            ];
+
+            if ($this->usuarioModelo->agregarfirma($datos)) {
+              redireccionar('/archivosfirma/firmarArchivo/'.$id);
+            }else{
+              die('Algo salio mal');
+            }
+          }else{
+              //tipo de imagen
+                $permitidos = array("image/jpeg", "image/png", "image/gif", "image/jpg", "application/pdf", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+                $limite = 60024;
+                //if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite * 60024) {
+                if (in_array($_FILES['imagen']['type'], $permitidos)) {
+                $nombre = date('is') . $_FILES['imagen']['name'];
+                $nombre2 = date('is') . utf8_decode($_FILES['imagen']['name']);
+                $tamanio = $_FILES['imagen']['size'];
+                //$ruta = "Views" . DS . "template" . DS . "imagenes" . DS . "avatars" . DS . $nombre;
+                //validar tipos de archivos
+                if ($_FILES['imagen']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                  $tipo = "application/xlsx";
+                }elseif ($_FILES['imagen']['type'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                  $tipo = "application/docx";
+                }else {
+                  $tipo = $_FILES['imagen']['type'];
+                }
+                $ruta = "img" . DS . "nuevasfirmas" . DS . $nombre2;
+                //$ruta ="public/img/nuevos/" . $nombre;
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta);
+                $datos = [
+                  //'marca' => trim($_POST['marca']),
+                  //'descripcion' => trim($_POST['descripcion']),
+                  'firmatexto' => '',
+                  'nombre_arch' => $nombre,
+                  'type' => $tipo,
+                  'tamanio' => $tamanio,
+                  'fechaActual' => trim($_POST['fechaActual']),
+                  'id_doc' => $id,
+                ];
+            if ($this->usuarioModelo->agregarfirma($datos)) {
+                redireccionar('/archivosfirma/firmarArchivo/'.$id);
+              }else{
+                die('Algo salio mal');
+              }
+            }else{
+                die('Tipo o tamanio no permitida');
+            }
+          }
+
+          
+        }
+
+    }else{
+      $usuario = $this->usuarioModelo->obtenerArchivosId($id);
+      $firmas = $this->usuarioModelo->obtenerfimas($id);
       $datos = [
          'id_documento' => $usuario->id,
           'archivo' => $usuario->nombrearchivo,
          'descripcion' => $usuario->description,
          'tipo' => $usuario->tipo,
-         'fechaRegistro' => $usuario->fecha
+         'fechaRegistro' => $usuario->fecha,
+         'firmas' => $firmas,
         ];
 
     $this->vista('adminfirma/firmararchivo', $datos);
+      }
   }
 
 }// end class

@@ -48,7 +48,25 @@ $user=$_SESSION['usuario'];
       justify-content: center;    
       flex-direction: row;
     }
-    </style>
+  			.colordiv{
+  				top: 150px;
+  			}
+  			.alto-baner{
+  				margin-bottom: 60px;
+  			}
+  			.w-imagen{
+  				width: 90px;
+  			}
+  			.w-imagen-logo{
+  				width: 160px;
+  			}
+  			.fondo-baner-contacto{
+  				background-color: #1380bb;
+  			}
+  			.text-iconos{
+  				font-size: 24px;
+  			}
+  	</style>
   </head>
   <body id="admin">
 
@@ -75,13 +93,14 @@ $user=$_SESSION['usuario'];
                       <!--<span class="visually-hidden">(current)</span>-->
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="<?php echo RUTA_URL;?>/Recursos/agregarnew">Registrar
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="<?php echo RUTA_URL;?>/Recursos/listado">Lista
-                    </a>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Registrar</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="<?php echo RUTA_URL;?>/Recursos/agregarnew">Publicación</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="<?php echo RUTA_URL;?>/Archivosfirma/agregarnew">Archivo a certificar</a>
+                    </div>
                   </li>
                   <!--<li class="nav-item">
                     <a class="nav-link" href="#">Features</a>

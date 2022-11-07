@@ -4,10 +4,12 @@
   </a>
   <a href="<?php echo RUTA_URL;?>/mvc_arb/inicio" class="list-group-item"><span class="fas fa-store-alt" aria-hidden="true"></span> Inicio
   </a>
-  <a href="<?php echo RUTA_URL;?>/recursos/listado" class="list-group-item"><span class="fas fa-images" aria-hidden="true"></span> Listado de contenido
+  <a href="<?php echo RUTA_URL;?>/recursos/listado" class="list-group-item"><span class="fas fa-images" aria-hidden="true"></span> Archivos publicados
   </a>
-  <a href="<?php echo RUTA_URL;?>/recursos/listado" class="list-group-item"><span class="fas fa-file-pdf" aria-hidden="true"></span> Firma
+  <a href="<?php echo RUTA_URL;?>/archivosfirma/listado" class="list-group-item"><span class="fas fa-images" aria-hidden="true"></span> Archivos certificados
   </a>
+  <!-- <a href="<?php echo RUTA_URL;?>/recursos/listado" class="list-group-item"><span class="fas fa-file-pdf" aria-hidden="true"></span> Firma
+  </a> -->
   <!--<a href="usuarios.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuarios <span class="badge">112</span></a>-->
 </div>
 

@@ -30,7 +30,7 @@ class Recurso{
     return $resultados;
   }
   public function agregarRecurso($datos){
-    $this->db->query('INSERT INTO archivos_cms(nombrearchivo,description,tipo,tamanio,fecha,fecha_r,estado) VALUES (:archivo, :descripcion, :tipo, :tamanio, :fecha, NOW(), 1)');
+    $this->db->query('INSERT INTO archivos_cms(nombrearchivo,description,tipo,tamanio,fecha,fecha_r,id_especial,id_user,estado) VALUES (:archivo, :descripcion, :tipo, :tamanio, :fecha, NOW(), :mytoken, :id_user, 1)');
 
     //vinvular valores
     $this->db->bind(':archivo', $datos['nombre_arch']);
@@ -38,10 +38,27 @@ class Recurso{
     $this->db->bind(':tipo', $datos['type']);
     $this->db->bind(':tamanio', $datos['tamanio']);
     $this->db->bind(':fecha', $datos['fechaActual']);
+    $this->db->bind(':mytoken', $datos['mytoken']);
+    $this->db->bind(':id_user', $datos['id_user']);
     //$this->db->bind(':estado', $datos['fechaActual']);
 
     //Ejecutar
     if ($this->db->execute()) {
+
+      $this->db->query('INSERT INTO archivos_cms_info(id_tipo,palabra_clave,id_doc,id_usuario,sujeto,id_clasificacion,fechaCaptura,date_write,id_especial,estado) VALUES (:pub, :clave_sum, :doc, :id_user, :sujeto, :cla, :fecha, NOW(), :mytoken, 1)');
+
+      //vinvular valores
+      $this->db->bind(':pub', $datos['pub']);
+      $this->db->bind(':clave_sum', $datos['sum']);
+      $this->db->bind(':doc', $datos['doc']);
+      $this->db->bind(':id_user', $datos['id_user']);
+      $this->db->bind(':sujeto', $datos['sujeto']);
+      $this->db->bind(':cla', $datos['cla']);
+      $this->db->bind(':fecha', $datos['fechaActual']);
+      $this->db->bind(':mytoken', $datos['mytoken']);
+      //$this->db->bind(':estado', $datos['fechaActual']);
+      $this->db->execute();
+
       return true;
     }else {
       return false;
@@ -95,5 +112,33 @@ class Recurso{
       return false;
     }
   }
+
+  public function publicTypeAll(){
+    $this->db->query('SELECT * FROM tipo_publicacion ORDER BY id ASC');
+
+    $resultados = $this->db->registros();
+    return $resultados;
+  }
+  public function typeDocAll(){
+    $this->db->query('SELECT * FROM tipo_documento ORDER BY id ASC');
+
+    $resultados = $this->db->registros();
+    return $resultados;
+  }
+  public function clasificAll(){
+    $this->db->query('SELECT * FROM clasificacion_archivo ORDER BY id ASC');
+
+    $resultados = $this->db->registros();
+    return $resultados;
+  }
+  public function consultarUser($datos){
+    $this->db->query('SELECT * FROM info_partner_user WHERE email_user = :email_user LIMIT 1;');
+
+      $this->db->bind(':email_user', $datos['email_user']);
+      $resultados = $this->db->registro();
+
+      return $resultados;
+  }
+
 }// end class
 ?>

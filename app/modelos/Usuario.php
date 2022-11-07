@@ -89,6 +89,19 @@
         }
     }
 
+    public function accesoPago($datos){
+      $this->db->query('UPDATE info_partner_user SET  access_user = :acceso WHERE id = :id');
+      //vinvular valores
+      $this->db->bind(':id', $datos['id']);
+      $this->db->bind(':acceso', $datos['acceso']);
+      //Ejecutar
+      if ($this->db->execute()) {
+        return true;
+      }else {
+        return false;
+      }
+    }
+
   }
 
 ?>

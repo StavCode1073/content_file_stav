@@ -5,9 +5,12 @@
             $user=$_SESSION['usuario'];
 ?>
 
-
 <?php require RUTA_APP . '/vistas/inc/header-form.php';?>
-
+<style>
+  .iconos-tamanio{
+    font-size: 42px;
+  }
+</style>
     <header id="encabezadoadmin">
           <div class="container">
           <div class="d-flex justify-content-center">
@@ -27,7 +30,7 @@
               <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav me-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">Elíje un plan
+                    <a class="nav-link active" href="<?php echo RUTA_URL;?>/paginas/selectPlan">Elíje un plan
                     </a>
                   </li>
                 <li class="nav-item dropdown text-right">
@@ -49,159 +52,157 @@
             </div>
           </nav>
     </section>
-
+<div class="container my-5">
+  <h2 class="text-center">¿Que tramite va a realizar?</h2>
+</div>
 <div class="row mx-2  mx-md-0 my-5">
     <div class="col-12 col-md-2"></div>
     <div class="col-12 col-md-8">
         <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <div class="mx-2 card-body">
-                <h5 class="card-title my-2 ">Hemeroteca + suscripción anual a la revista semanal digital</h5>
-                <p class="text-muted mb-2">
-                  Prepago
-                </p>
-                <p class="h2 fw-bold">$1,450.00<small class="text-muted" style="font-size: 18px;">MXN</small></p>
-                <p class="text-muted mb-2">
-                  Acceso a este contenido por 12 meses
-                </p>
+        <div class="col-md-4 mt-3">
+            <div class="card h-100">
+              <div class="mx-2 card-body text-center">
+                <br>
+                <h4 class="card-title text-center mt-4 h-25">SUSCRIPCIÓN ORDINARIO</h4>
+                <i class="fa-solid fa-user-plus iconos-tamanio"></i>
+                <br><br><br>
                 <a href="#" class="btn btn-dark d-block mb-2 mt-3 text-capitalize">Seleccionar plan</a>
               </div>
-              <div class="card-footer">
-                <p class="text-uppercase fw-bold" style="font-size: 12px;">Incluye</p>
-                <ol class="list-unstyled mb-0 px-4">
-                  <p class="my-3 text-justify">
-                    Contiene 43 años de información + 52 ejemplares semanales digitales. Ambos productos son para consulta en línea, no son descargables, del ejemplar 1 al 1521 está en texto (no tiene imágenes) del ejemplar 1522 a la fecha están con texto y fotos. No están incluidos los libros y ediciones especiales. Tenemos servicio especial para investigadores. informes 55 5636 2083
-                  </p>
-                  <!--<li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>
-                  <li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>-->
-                </ol>
-              </div>
+            </div>
+          </div> 
+
+          <div class="col-md-4 mt-3">
+            <div class="card h-100">
+              <div class="mx-2 card-body text-center">
+                <br>
+                <h4 class="card-title text-center mt-4 h-25">PUBLICACIONES</h4>
+                <i class="fa-solid fa-file-contract iconos-tamanio"></i>
+                <br><br><br>
+                <a href="<?php echo RUTA_URL;?>/paginas/selectDocumentType" class="btn btn-dark d-block mb-2 mt-3 text-capitalize">Seleccionar plan</a>
+                </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card border border-dark shadow p-3 mb-5 bg-body rounded">
-              <div class="mx-2 card-body">
-                <h5 class="card-title my-2 ">Suscripción semestral a la revista semanal digital</h5>
-                <p class="text-muted">
-                  Prepago
-                </p>
-                <p class="h2 fw-bold">$650.00<small class="text-muted" style="font-size: 18px;">MXN</small></p>
-                    <p class="text-muted mb-2">
-                       Acceso a este contenido por 6 mes
-                    </p>
-                <a  href="<?php echo RUTA_URL;?>/paginas/pymentPricing/" class="btn btn-dark d-block mb-2 mt-3 text-capitalize">Seleccionar plan</a>
-              </div>
-              <div class="card-footer">
-                <p class="text-uppercase fw-bold" style="font-size: 12px;">Incluye</p>
-                <ol class="list-unstyled mb-0 px-4">
-                  <p class="my-3 text-justify">
-                    Adquiere la suscripción a la revista semanal digital por seis meses, no es un producto descargable, es para consulta en línea. No incluye el servicio de Hemeroteca. No están incluidos los libros y ediciones especiales.
-                  </p>
-                  <!--<li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>
-                  <li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>
-                  <li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>-->
-                </ol>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <div class="mx-2 card-body">
-                <h5 class="card-title my-2 ">Suscripción mensual a la revista semanal digital</h5>
-                <p class="text-muted">
-                  Prepago
-                </p>
-                <p class="h2 fw-bold">$150.00<small class="text-muted" style="font-size: 18px;">MXN</small></p>
-                    <p class="text-muted mb-2">
-                       Acceso a este contenido por 1 mes
-                    </p>
+          <div class="col-md-4 mt-3">
+          <div class="card h-100">
+              <div class="mx-2 card-body text-center">
+                <br>
+                <h4 class="card-title text-center mt-4 h-25">DISPOSICIÓN DE EJEMPLAR</h4>
+                <i class="fa-solid fa-newspaper iconos-tamanio"></i>
+                <br><br><br>
                 <a href="#" class="btn btn-dark d-block mb-2 mt-3 text-capitalize">Seleccionar plan</a>
               </div>
-              <div class="card-footer">
-                <p class="text-uppercase fw-bold" style="font-size: 12px;">Incluye</p>
-                <ol class="list-unstyled mb-0 px-4">
-                  <p class="my-3 text-justify">
-                    Adquiere la suscripción a la revista semanal digital por un mes, no es un producto descargable, es para consulta en línea. No incluye el servicio de Hemeroteca. Libros y ediciones especiales se adquieren de forma individual.
-                  </p>
-                 <!-- <li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>
-                  <li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>
-                  <li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>
-                  <li class="mb-3">
-                    <i class="fas fa-check text-success me-3"></i><small>Lorem Ipsum</small>
-                  </li>-->
-                </ol>
-              </div>
             </div>
           </div>
+ 
         </div>
     </div>
     <div class="col-12 col-md-2"></div>
 </div>
+<section class="">
+		<footer class="text-center text-white" style="background-color: rgba(0, 0, 0, 0.2);">
+		  <!-- Grid container -->
+		  <div class="container py-3">
+		    <!-- Section: Social media -->
+		    <section class="mb-4">
+		      <!-- Facebook -->
+		      <a
+		        class="btn btn-link btn-floating btn-lg text-dark m-1 text-iconos"
+		        href="#!"
+		        role="button"
+		        data-mdb-ripple-color="dark"
+		        ><i class="fab fa-facebook-f"></i
+		      ></a>
 
-  <footer class="bg-dark text-center text-white ">
-    <!-- Grid container -->
-    <div class="container p-4 pb-0">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
+		      <!-- Twitter -->
+		      <a
+		        class="btn btn-link btn-floating btn-lg text-dark m-1 text-iconos"
+		        href="#!"
+		        role="button"
+		        data-mdb-ripple-color="dark"
+		        >
+            <i class="fa-brands fa-whatsapp"></i>
+          
+          </a>
 
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
+		      <!-- Instagram -->
+		      <a
+		        class="btn btn-link btn-floating btn-lg text-dark m-1 text-iconos"
+		        href="#!"
+		        role="button"
+		        data-mdb-ripple-color="dark"
+		        ><i class="fab fa-instagram"></i
+		      ></a>
 
-        <!-- Google -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
-        ></a>
 
-        <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-instagram"></i
-        ></a>
+		    </section>
+		    <!-- Section: Social media -->
+		  </div>
+		  <!-- Grid container -->
+		</footer>
+	</section>
+	<!-- Footer -->
+<footer class="text-center text-lg-start bg-dark text-muted mt-2">
 
-        <!-- Linkedin -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
+  <!-- Section: Links  -->
+  <section class="pt-5">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 d-flex flex-column justify-content-center">
+          <!-- Content -->
+          <h6 class=" fw-bold mb-2 h5 text-center">
+            <!--<i class="fas fa-gem me-3 text-secondary"></i>-->Gobierno del Estado de Oaxaca
+          </h6>
+          <p>
+          	<img src="<?php echo RUTA_URL;?>/img/oax-escudo.png" class="rounded mx-auto d-block w-imagen" alt="...">
+          </p>
+          <!--<p>
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>-->
+        </div>
+        <!-- Grid column -->
 
-        <!-- Github -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-github"></i
-        ></a>
-      </section>
-      <!-- Section: Social media -->
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Acceso rapido
+          </h6>
+					<p><i class="fas fa-home me-3 text-secondary"></i> Inicio</p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contactos</h6>
+          
+          <p>
+            <i class="fas fa-envelope me-3 text-secondary"></i>
+            contacto@oaxaca.gob.com.mx
+          </p>
+          <p>
+            <i class="fas fa-envelope me-3 text-secondary"></i>
+            oaxacaoficial@hotmail.com
+          </p>
+          <p><i class="fas fa-phone me-3 text-secondary"></i> 558 - 234 - 1212</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
     </div>
-    <!-- Grid container -->
+  </section>
+  <!-- Section: Links  -->
 
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-white" href="#">Portal de Gobierno del Estado de Oaxaca 2022</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+    © Portal de Gobierno del Estado de Oaxaca 2022
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 <?php require RUTA_APP . '/vistas/inc/footer-form.php';?>
 <?php
 
